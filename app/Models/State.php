@@ -23,4 +23,9 @@ class State extends Model
     {
         return $this->hasMany(City::class);
     }
+
+    public function bankDetails()
+    {
+        return $this->hasMany(BankDetail::class);
+    }
 }

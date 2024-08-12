@@ -13,4 +13,9 @@ class Bank extends Model
         'name',
         'short_name'
     ];
+
+    public function bankDetails()
+    {
+        return $this->hasMany(BankDetail::class);
+    }
 }
