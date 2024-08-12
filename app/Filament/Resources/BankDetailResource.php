@@ -48,8 +48,9 @@ class BankDetailResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('bank_id')
-                    ->numeric()
-                    ->sortable(),
+                    ->getStateUsing(function (BankDetail $record): string {
+                        return $record->bank->name . ' - ' . $record->bank->short_name;
+                    }),
                 Tables\Columns\TextColumn::make('ifsc_code')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('micr_code')
@@ -64,15 +65,15 @@ class BankDetailResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('zipcode')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('country_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('state_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('city_id')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('country.name')                    
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('state.name')                    
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('city.name')                    
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
