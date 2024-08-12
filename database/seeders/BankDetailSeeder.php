@@ -82,8 +82,8 @@ class BankDetailSeeder extends Seeder
                 'city_id' => $cities->where('name', 'Chennai')->first()->id,
             ],
             [
-                'bank_id' => 5,
-                'ifsc_code' => $banks->where('short_name', 'Kotak')->first()->id,
+                'bank_id' => $banks->where('short_name', 'Kotak')->first()->id,
+                'ifsc_code' => 'KOTK0007890',
                 'micr_code' => '000078900',
                 'address' => '202 Fifth St, Chennai',
                 'branch' => 'Chennai Branch',
